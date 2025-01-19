@@ -1,0 +1,76 @@
+
+
+@startuml classDiag
+
+TaskView --* TaskController
+TaskController *-- TaskManager
+TaskManager *-- TaskRepository
+SqlInjectionValidator --* TaskManager
+
+
+Task --o TaskView
+Task --o TaskController
+Task --o TaskManager
+Task --o TaskRepository
+
+
+
+class TaskView{
+    connect_signals(TaskController : controller) : void
+    get_task_input() : Task
+    clear_input() : void
+    show_message(message : str) : void
+    display_tasks(list[Task] : tasks)
+    delete_task(row, task) : void 
+    udate_task_status(status, task) : void
+
+}
+
+class TaskController{
+    manager : TaskManager
+    view : TaskView
+    add_task() : void
+    update_task() : void
+    delete_task(task_id) : void
+    show_all_task() : void
+    show_task_by_id() : void
+
+}
+
+class TaskManager{
+    repository : TaskRepository
+    add_task(Task: task) : Task
+    get_all_tasks() : list[Task]
+    get_task_by_id() : int
+    update_task() :Task
+    delete_task() : bool
+}
+
+class TaskRepository{
+    host : str
+    port : str
+    database : str
+    user : str
+    password : str
+    create(Task : task) : Task
+    get_all() : list[Task]
+    get_by_id(int : task_id) : Task
+    update_isdone(Task : task) : Task
+    delete(int : task_id) : bool
+    
+}
+
+class Task{
+    id : int
+    name : str
+    is_done : bool
+    create_at: datetime 
+    update_at: datetime  
+}
+
+class SqlInjectionValidator{
+    valide_input(user_input): bool
+    
+}
+
+@enduml

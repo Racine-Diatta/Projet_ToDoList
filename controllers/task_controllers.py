@@ -30,7 +30,6 @@ class TaskController:
         except Exception as e:
             self.view.show_message(f"Erreur : {e}")
             
-        #------------ ADDED TODAY(12/12/2024) ---------------
     def update_task(self):
         """
         Mettre à jour une tâche à travers les données saisies dans view
@@ -44,29 +43,15 @@ class TaskController:
         else:
             self.view.show_message(f"La mis à jour à échouée: Tâche non trouvé !")
     
-    #---- A activer en cas de probléme -----
-    # def delete_task(self, task_id):
-    #     """Supprimer une tâche."""
-    #     try:
-    #         print("cocou")
-    #         self.manager.delete_task(task_id)
-    #         self.tasks = [task for task in self.tasks if task.id != task_id]
-    #         self.view.display_tasks(self.tasks)
-    #         self.view.show_message("Tâche supprimée avec succès.")
-    #     except Exception as e:
-    #         self.view.show_message(f"Erreur : {e}")
 
     def delete_task(self, task_id):
         """Supprimer une tâche."""
-        # task_id = self.view.get_task_id()
         is_deleted = self.manager.delete_task(task_id)
         if is_deleted:
             self.view.show_message(f"La tâche avec l'ID {task_id} a été correctement supprimé ")
         else:
             self.view.show_message("Echec de supression : Description de la tâche non trouvé.")  
-    # -----      -------------       ------
 
-    # ----- A déactiver si ça fonctionne pas -------------
     def show_all_task(self):
         """
         Affichage des Tâches disponibles
@@ -74,7 +59,6 @@ class TaskController:
         """   
         tasks = self.manager.get_all_tasks()
         self.view.display_tasks(tasks)
-    #----------------------------------------------------
 
     def show_task_by_id(self):
         """
@@ -85,9 +69,8 @@ class TaskController:
         task = self.manager.get_task_by_id(task_id)
         if task:
             self.view.display_tasks(task) 
-            self.view.clear_input() # Ajouter par MOI
+            self.view.clear_input()
         else:
             self.view.show_message("Tâche non trouvé.")
         
 
-#=================================================

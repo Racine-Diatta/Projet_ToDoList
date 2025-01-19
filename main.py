@@ -18,8 +18,7 @@ if __name__ == "__main__":
     
     # Initialisation des composants                                                                                     
     repository = TaskRepository(
-    # Récupérer les variables d'environnement ci-dessous après les avoir 
-    # chargées préalablement
+    # Récupérer les variables d'environnement ci-dessous après les avoir chargées préalablement
         host=os.getenv("DB_HOST"), 
         database = os.getenv("DB_DATABASE"), 
         user=os.getenv("DB_USER"), 
@@ -39,6 +38,5 @@ if __name__ == "__main__":
 
 
 
-#==================================================
 
     

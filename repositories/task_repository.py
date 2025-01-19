@@ -16,14 +16,11 @@ class TaskRepository:
             )
             if self.connect.is_connected():
                 print("Connexion réussie à la base de données.")
-        # except Error as e:
         except mysql.connector.Error as e:
             print(f"Erreur de connexion à la base de données : {e}")
             self.connect = None
 
-# ================================================================
-# ========================== CRUD proccess =======================
-# 1- CREATE ========================
+# 1- CREATE 
     def create(self, task: Task) -> Task:
         """
         Ajoute un objet task dans la base de donnée
@@ -43,7 +40,7 @@ class TaskRepository:
             print(f"Erreur lors de l'ajout de la tâche : {e}")
             return None
 
-# 2- READ ========================
+# 2- READ 
     def get_all(self):
         """Récuperer les données depuis la base de données et les 
            transformer en objet de la classe Task
@@ -54,13 +51,13 @@ class TaskRepository:
         try:
             cursor = self.connect.cursor()
             cursor.execute(query)
-            rows = cursor.fetchall() # Retourne une liste de tuple
+            rows = cursor.fetchall() # Retourn une liste de tuple
             #On accéde aux valeurs de l'instance Task via leur index
             return [Task(id=row[0], name=row[1], is_done=row[2]) for row in rows]
         except Error as e:
             print(f"Erreur lors de la récupération des tâches : {e}")
             return []
-    # ------------- ADDED TODAY(11/12/24) -------------
+
     def get_by_id(self, task_id):
         """
         Accéder à une tâche via son ID
@@ -88,7 +85,7 @@ class TaskRepository:
             print(f"Erreur lors de récuparationde la tâche : {e} ")
             return None
 
-# 3- UPDATE ========================
+# 3- UPDATE 
     def update_isdone(self, task: Task) -> Task:
         """
         Mettre à jour une tâche et la retournée
@@ -115,9 +112,8 @@ class TaskRepository:
         except Error as e:
             print(f"Erreur lors d ela mise à jour de la tâche : {e}")
             return None
-    #--------------------------------------------------
 
-# 4- DELETE ========================
+# 4- DELETE 
     def delete(self, task_id):
         """
         Suppression d'une tâche via son ID
@@ -133,7 +129,6 @@ class TaskRepository:
         except Error as e:
             print(f"Erreur lors de la suppression de la tâche : {e}")
             return False
-#=======================================================================================
 
     def __del__(self):
         """
@@ -145,4 +140,3 @@ class TaskRepository:
             print("Fermeture de la connexion à la base de donnée. BYEBYE !")
         
 
-#==================================================

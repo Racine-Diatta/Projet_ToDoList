@@ -6,7 +6,6 @@ def test_input_vide():
     Tester si une entrée utilisateur  vide est passe validation 
     anti-injection SQL
     """
-    # assert SqlInjectionValidator.valide_input("") == True
     input_vide = ""
     assert SqlInjectionValidator.valide_input(input_vide) 
     
@@ -16,7 +15,6 @@ def test_input_valide():
     Tester si la saisie valide de l'entrée utilisateur est passe validation 
     anti-injection SQL
     """
-    # assert SqlInjectionValidator.valide_input("Faire une tâche test normal") == True
     valid_input = "Faire une tâche test normal"
     assert SqlInjectionValidator.valide_input(valid_input)
 

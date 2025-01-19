@@ -9,8 +9,8 @@ class SqlInjectionValidator:
         tentatives d'injection SQL.
         """
         motsCleSQL = ['SELECT', 'FROM','INSERT','DROP', 'DELETE', 'UPDATE', 'ALTER', 'TRUNCATE', 'EXEC', 'UNION']
-        sqlRegex = r"[;'\-/*#]"
-        
+        sqlRegex = r"[;\-/*#]"
+
         # Vérif. l'entrée utilisateur: mot-clé SQL
         for motcle in motsCleSQL:
             if motcle.lower() in user_input.lower():
